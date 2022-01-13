@@ -1,0 +1,66 @@
+module.exports = {
+  env: {
+    es2021: true,
+    node: true,
+  },
+  extends: [
+    'airbnb-base',
+  ],
+  parserOptions: {
+    ecmaVersion: 13,
+    sourceType: 'module',
+  },
+  rules: {
+    camelcase: 0,
+    'no-underscore-dangle': 0,
+    'capitalized-comments': 0,
+    'comma-dangle': [2, {
+      arrays: 'always-multiline',
+      objects: 'always-multiline',
+      imports: 'always-multiline',
+      exports: 'always-multiline',
+      functions: 'never',
+    }],
+    'import/extensions': [2, 'never'],
+    'import/prefer-default-export': 0,
+    'import/no-extraneous-dependencies': 0,
+    'no-multiple-empty-lines': [2, {
+      max: 1,
+      maxBOF: 0,
+      maxEOF: 1,
+    }],
+    'no-prototype-builtins': 1,
+    'require-jsdoc': 0,
+    'valid-jsdoc': 0,
+    'prefer-arrow-callback': 0,
+    'space-before-function-paren': [2, 'always'],
+    'no-param-reassign': 0,
+    'no-console': 1,
+    'operator-linebreak': [2, 'after', { overrides: { '?': 'before', ':': 'before' } }],
+    'class-methods-use-this': 0,
+    'max-len': 0,
+    'template-curly-spacing': 0,
+    indent: [2, 2, {
+      SwitchCase: 1,
+      VariableDeclarator: 1,
+      outerIIFEBody: 1,
+      // MemberExpression: null,
+      FunctionDeclaration: {
+        parameters: 1,
+        body: 1,
+      },
+      FunctionExpression: {
+        parameters: 1,
+        body: 1,
+      },
+      CallExpression: {
+        arguments: 1,
+      },
+      ArrayExpression: 1,
+      ObjectExpression: 1,
+      ImportDeclaration: 1,
+      flatTernaryExpressions: false,
+      ignoreComments: false,
+    }],
+  },
+};
