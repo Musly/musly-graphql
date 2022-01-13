@@ -3,10 +3,14 @@ const { GraphQLFileLoader } = require('@graphql-tools/graphql-file-loader');
 const { loadSchemaSync } = require('@graphql-tools/load');
 const { addResolversToSchema } = require('@graphql-tools/schema');
 const { ApolloServer } = require('apollo-server');
+const {
+  ApolloServerPluginLandingPageGraphQLPlayground,
+  ApolloServerPluginLandingPageDisabled,
+} = require('apollo-server-core');
 const Sentry = require('@sentry/node');
 const { resolvers } = require('./resolvers');
 const {
-  IS_DEVELOPMENT, SENTRY_DSN, SENTRY_ENV, PORT,
+  IS_DEVELOPMENT, IS_PRODUCTION, SENTRY_DSN, SENTRY_ENV, PORT,
 } = require('./constants');
 const pkg = require('../package');
 const { SentryApolloPlugin } = require('./utils/SentryPlugin');
@@ -33,7 +37,11 @@ const schemaWithResolvers = addResolversToSchema({
 const server = new ApolloServer({
   schema: schemaWithResolvers,
   debug: IS_DEVELOPMENT,
-  plugin: [SentryApolloPlugin()],
+  plugin: [
+    SentryApolloPlugin(),
+    IS_DEVELOPMENT && ApolloServerPluginLandingPageGraphQLPlayground(),
+    IS_PRODUCTION && ApolloServerPluginLandingPageDisabled(),
+  ].filter(Boolean),
 });
 
 server.listen({ port: PORT, host: '0.0.0.0' })
