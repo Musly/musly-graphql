@@ -7,6 +7,8 @@ const ENV_KEY_PRODUCTION = 'production';
 exports.ENV = process.env.NODE_ENV || ENV_KEY_DEVELOPMENT;
 exports.PORT = process.env.PORT || 3001;
 exports.API_URL = process.env.MUSLY_API_URL || 'http://localhost:3000';
+exports.TOKEN_SECRET = process.env.MUSLY_API_TOKEN_SECRET;
+exports.TOKEN_ALGORITHM = 'HS256';
 
 exports.SENTRY_DSN = process.env.MUSLY_API_SENTRY_DSN;
 exports.SENTRY_ENV = process.env.MUSLY_API_SENTRY_ENVIRONMENT;

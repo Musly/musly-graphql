@@ -21,16 +21,9 @@ type Mutation {
     firstName: String!
     lastName: String!
   ): Boolean
-  updateUser(
-    id: ID!
-    firstName: String
-    lastName: String
-    displayName: String
-    password: String
-  ): User
   login(email: String!, password: String!): User
   logout: Boolean
-  deleteUser(id: ID!): Boolean
+  delete(id: ID!): Boolean
 
   # group
   createGroup(title: String!, type: String!): [Group]!

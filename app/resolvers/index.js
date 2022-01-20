@@ -1,6 +1,6 @@
 /* eslint-disable global-require */
 const { buildResolvers } = require('../utils/buildResolvers');
 
-exports.resolvers = buildResolvers([
+module.exports = buildResolvers([
   require('./user.resolver'),
 ]);
