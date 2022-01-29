@@ -5,4 +5,6 @@ module.exports = buildResolvers([
   require('./user.resolver'),
   require('./group.resolver'),
   require('./artist.resolver'),
+  require('./comment.resolver'),
+  require('./genre.resolver'),
 ]);

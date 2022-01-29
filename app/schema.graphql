@@ -4,7 +4,7 @@ type Query {
   groups: Groups!
   artists(groupId: ID!): Artists!
   positions(groupId: ID!): [Position]!
-  genres(groupId: ID!): [Genre]!
+  genres(groupId: ID!): Genres!
   keys(groupId: ID!): [Key]!
   songs(groupId: ID!): [Song]!
   sections(songId: ID!): [Section]!
@@ -45,10 +45,10 @@ type Mutation {
   deletePosition(positionId: ID!): [Position]!
 
   # genre
-  createGenre(groupId: ID!, title: String!): [Genre]!
-  updateGenre(id: ID!, title: String!): [Genre]!
-  deleteGenre(id: ID!): [Genre]!
-  deleteManyGenres(ids: [ID]!): Boolean
+  createGenre(groupId: ID!, title: String!): Genres!
+  updateGenre(id: ID!, title: String!): Genres!
+  deleteGenre(id: ID!): Genres!
+  deleteManyGenres(ids: [ID]!): Genres!
 
   # key
   createKey(groupId: ID!, title: String!): [Key]!
@@ -167,10 +167,16 @@ type Position {
 
 # genre
 
+type Genres {
+  total: Int!
+  results: [Genre]!
+}
+
 type Genre {
   id: ID!
   title: String!
   groupId: ID!
+  slug: String
 }
 
 # key
