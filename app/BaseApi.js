@@ -1,7 +1,7 @@
 const { RESTDataSource } = require('apollo-datasource-rest');
-const { API_URL } = require('../constants');
+const { API_URL } = require('./constants');
 
-module.exports = class BaseAPI extends RESTDataSource {
+class BaseApi extends RESTDataSource {
   constructor () {
     super();
     this.baseURL = API_URL;
@@ -10,4 +10,6 @@ module.exports = class BaseAPI extends RESTDataSource {
   willSendRequest (request) {
     request.headers.set('Authorization', this.context.req.headers.authorization);
   }
-};
+}
+
+module.exports = BaseApi;

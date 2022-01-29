@@ -11,6 +11,7 @@ module.exports = {
     sourceType: 'module',
   },
   rules: {
+    'global-require': 0,
     camelcase: 0,
     'no-underscore-dangle': 0,
     'capitalized-comments': 0,

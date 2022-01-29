@@ -27,6 +27,10 @@ Sentry.init({
 });
 
 const server = new ApolloServer({
+  debug: IS_DEVELOPMENT,
+
+  dataSources: require('./apis'),
+
   // Load the schema and dynamically add resolvers.
   schema: addResolversToSchema({
     schema: loadSchemaSync(path.join(__dirname, 'schema.graphql'), {
@@ -36,10 +40,13 @@ const server = new ApolloServer({
     }),
     resolvers: require('./resolvers'),
   }),
+
   // Extending the context with the user
   context: ({ req, res }) => ({
     req, res, user: getUser(req),
   }),
+
+  // Formatting errors
   formatError: (error) => {
     if (error.extensions?.response?.body?.code) {
       return {
@@ -50,8 +57,7 @@ const server = new ApolloServer({
 
     return error;
   },
-  debug: IS_DEVELOPMENT,
-  dataSources: require('./apis'),
+
   plugin: [
     SentryApolloPlugin(),
     IS_DEVELOPMENT && ApolloServerPluginLandingPageGraphQLPlayground(),

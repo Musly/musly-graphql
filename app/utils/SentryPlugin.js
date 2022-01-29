@@ -26,8 +26,8 @@ exports.SentryApolloPlugin = function SentryApolloPlugin () {
               const token = verify(ctx.request.http.headers.get('authorization'), `${process.env.MUSLY_API_TOKEN_SECRET}`);
 
               Sentry.setUser({
-                id: token.userId,
-                email: token.userEmail,
+                id: token.user.id,
+                email: token.user.email,
               });
             }
 

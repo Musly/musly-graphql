@@ -1,11 +1,11 @@
 type Query {
   me: User
   dashboard(groupId: ID!): Dashboard!
-  groups: [Group]!
+  groups: Groups!
+  artists(groupId: ID!): Artists!
   positions(groupId: ID!): [Position]!
   genres(groupId: ID!): [Genre]!
   keys(groupId: ID!): [Key]!
-  artists(groupId: ID!): [Artist]!
   songs(groupId: ID!): [Song]!
   sections(songId: ID!): [Section]!
   lines(sectionId: ID!): [Line]!
@@ -14,6 +14,10 @@ type Query {
 }
 
 type Mutation {
+  # auth
+  login(email: String!, password: String!): User
+  logout: Boolean
+
   # user
   signup(
     email: String!
@@ -28,14 +32,12 @@ type Mutation {
     displayName: String
     password: String
   ): User
-  login(email: String!, password: String!): User
-  logout: Boolean
   deleteUser(id: ID!): Boolean
 
   # group
-  createGroup(title: String!, type: String!): [Group]!
-  updateGroup(id: ID!, title: String, type: String): [Group]!
-  deleteGroup(id: ID!): Boolean
+  createGroup(title: String!, type: String!): Groups!
+  updateGroup(id: ID!, title: String, type: String): Groups!
+  deleteGroup(id: ID!): Groups!
 
   # group position
   createPosition(groupId: ID!, title: String!, userId: ID): [Position]!
@@ -55,9 +57,9 @@ type Mutation {
   deleteManyKeys(ids: [ID]!): Boolean
 
   # artist
-  createArtist(groupId: ID!, title: String!): [Artist]!
-  updateArtist(artistId: ID!, title: String!): [Artist]!
-  deleteArtist(artistId: ID!): [Artist]!
+  createArtist(groupId: ID!, title: String!): Artists!
+  updateArtist(groupId: ID!, id: ID!, title: String!): Artists!
+  deleteArtist(groupId: ID!, id: ID!): Artists!
 
   # song
   createSong(
@@ -138,9 +140,15 @@ type Dashboard {
 
 # group
 
+type Groups {
+  total: Int!
+  results: [Group]!
+}
+
 type Group {
   id: ID!
   title: String!
+  slug: String!
   type: String!
   manager: User!
   positions: [Position!]!
@@ -175,9 +183,15 @@ type Key {
 
 # artist
 
+type Artists {
+  total: Int!
+  results: [Artist]!
+}
+
 type Artist {
   id: ID!
   title: String!
+  slug: String!
   groupId: ID!
 }
 

@@ -1,27 +1,21 @@
-const BaseAPI = require('./base.api');
+const BaseApi = require('../BaseApi');
 
-module.exports = class UserAPI extends BaseAPI {
-  createUser = (user) => (
-    this.post('/user', user)
+class UserApi extends BaseApi {
+  createUser = (data) => (
+    this.post('/user', data)
   );
 
-  getUserById = (id) => (
-    this.get(`/user/${encodeURIComponent(id)}`)
+  fetchUser = (userId) => (
+    this.get(`/user/${encodeURIComponent(userId)}`)
   );
 
-  updateUserById = (id, user) => (
-    this.patch(`/user/${encodeURIComponent(id)}`, user)
+  updateUser = (userId, data) => (
+    this.patch(`/user/${encodeURIComponent(userId)}`, data)
   );
 
-  deleteUserById = (id) => (
-    this.delete(`/user/${encodeURIComponent(id)}`)
+  deleteUser = (userId) => (
+    this.delete(`/user/${encodeURIComponent(userId)}`)
   );
+}
 
-  loginUser = (credentials) => (
-    this.post('/user/login', credentials)
-  );
-
-  logoutUser = () => (
-    this.get('/user/logout')
-  );
-};
+module.exports = UserApi;

@@ -1,24 +1,23 @@
 module.exports = {
   Query: {
     me: (parent, args, context) => (
-      context.dataSources.userAPI.getUserById(context.user.id)
+      context.dataSources.userApi.fetchUser(context.user.id)
     ),
   },
   Mutation: {
     signup: (parent, args, context) => (
-      context.dataSources.userAPI.createUser(args)
-    ),
-    login: (parent, args, context) => (
-      context.dataSources.userAPI.loginUser(args)
-    ),
-    logout: (parent, args, context) => (
-      context.dataSources.userAPI.logoutUser()
+      context.dataSources.userApi.createUser(args)
     ),
     updateUser: (parent, { id, ...userData }, context) => (
-      context.dataSources.userAPI.updateUser(id, userData)
+      context.dataSources.userApi.updateUser(id, userData)
     ),
     deleteUser: (parent, args, context) => (
-      context.dataSources.userAPI.deleteUserById(args.id)
+      context.dataSources.userApi.deleteUser(args.id)
+    ),
+  },
+  Group: {
+    manager: (parent, args, context) => (
+      context.dataSources.userApi.fetchUser(parent.managerId)
     ),
   },
 };

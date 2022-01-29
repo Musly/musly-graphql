@@ -1,7 +1,7 @@
 const jwt = require('jsonwebtoken');
 const { TOKEN_SECRET, TOKEN_ALGORITHM } = require('../constants');
 
-module.exports = function getUser (req) {
+function getUser (req) {
   if (!req.headers.authorization) {
     return null;
   }
@@ -12,4 +12,6 @@ module.exports = function getUser (req) {
   } catch (error) {
     return null;
   }
-};
+}
+
+module.exports = getUser;

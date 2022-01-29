@@ -18,7 +18,6 @@
     "apollo-datasource-rest": "^3.5.1",
     "apollo-server": "^3.6.1",
     "axios": "^0.24.0",
-    "dataloader": "^2.0.0",
     "dotenv": "^11.0.0",
     "graphql": "^16.2.0",
     "jsonwebtoken": "^8.5.1"
