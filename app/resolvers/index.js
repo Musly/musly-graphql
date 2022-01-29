@@ -1,6 +1,6 @@
 const { buildResolvers } = require('../utils/buildResolvers');
 
-module.exports = buildResolvers([
+const resolvers = buildResolvers([
   require('./auth.resolver'),
   require('./user.resolver'),
   require('./group.resolver'),
@@ -8,3 +8,7 @@ module.exports = buildResolvers([
   require('./comment.resolver'),
   require('./genre.resolver'),
 ]);
+
+console.log(resolvers);
+
+module.exports = resolvers;

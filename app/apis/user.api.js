@@ -1,19 +1,19 @@
 const BaseApi = require('../BaseApi');
 
 class UserApi extends BaseApi {
-  createUser = (data) => (
+  createUser = async (data) => (
     this.post('/user', data)
   );
 
-  fetchUser = (userId) => (
+  fetchUser = async (userId) => (
     this.get(`/user/${encodeURIComponent(userId)}`)
   );
 
-  updateUser = (userId, data) => (
+  updateUser = async (userId, data) => (
     this.patch(`/user/${encodeURIComponent(userId)}`, data)
   );
 
-  deleteUser = (userId) => (
+  deleteUser = async (userId) => (
     this.delete(`/user/${encodeURIComponent(userId)}`)
   );
 }

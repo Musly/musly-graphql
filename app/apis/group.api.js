@@ -1,19 +1,19 @@
 const BaseApi = require('../BaseApi');
 
 class GroupApi extends BaseApi {
-  listGroups = () => (
+  listGroups = async () => (
     this.get('/group')
   );
 
-  createGroup = (data) => (
+  createGroup = async (data) => (
     this.post('/group', data)
   );
 
-  updateGroup = (groupId, data) => (
+  updateGroup = async (groupId, data) => (
     this.patch(`/group/${groupId}`, data)
   );
 
-  deleteGroup = (groupId) => (
+  deleteGroup = async (groupId) => (
     this.delete(`/group/${groupId}`)
   );
 }

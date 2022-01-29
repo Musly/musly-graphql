@@ -1,12 +1,18 @@
 module.exports = {
   Query: {
-    genres: (parent, args, context) => (
+    genres: async (parent, args, context) => (
       context.dataSources.genreApi.listGenres(args.groupId)
     ),
   },
   Mutation: {
-    createGenre: (parent, { groupId, ...data }, context) => (
+    createGenre: async (parent, { groupId, ...data }, context) => (
       context.dataSources.genreApi.createGenre(groupId, data)
     ),
+  },
+  Group: {
+    genres: async (parent, args, context) => {
+      const response = await context.dataSources.genreApi.listGenres(parent.id);
+      return response.results || [];
+    },
   },
 };

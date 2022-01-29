@@ -1,23 +1,23 @@
 const BaseApi = require('../BaseApi');
 
 class ArtistApi extends BaseApi {
-  listArtists = (groupId) => (
+  listArtists = async (groupId) => (
     this.get(`/artist/${groupId}`)
   );
 
-  fetchArtist = (groupId, id) => (
+  fetchArtist = async (groupId, id) => (
     this.get(`/artist/${groupId}/${id}`)
   );
 
-  createArtist = (groupId, data) => (
+  createArtist = async (groupId, data) => (
     this.post(`/artist/${groupId}`, data)
   );
 
-  updateArtist = (groupId, id, data) => (
+  updateArtist = async (groupId, id, data) => (
     this.patch(`/artist/${groupId}/${id}`, data)
   );
 
-  deleteArtist = (groupId, id) => (
+  deleteArtist = async (groupId, id) => (
     this.delete(`/artist/${groupId}/${id}`)
   );
 }

@@ -1,17 +1,17 @@
 module.exports = {
   Query: {
-    me: (parent, args, context) => (
+    me: async (parent, args, context) => (
       context.dataSources.userApi.fetchUser(context.user.id)
     ),
   },
   Mutation: {
-    signup: (parent, args, context) => (
+    signup: async (parent, args, context) => (
       context.dataSources.userApi.createUser(args)
     ),
-    updateUser: (parent, { id, ...userData }, context) => (
+    updateUser: async (parent, { id, ...userData }, context) => (
       context.dataSources.userApi.updateUser(id, userData)
     ),
-    deleteUser: (parent, args, context) => (
+    deleteUser: async (parent, args, context) => (
       context.dataSources.userApi.deleteUser(args.id)
     ),
   },

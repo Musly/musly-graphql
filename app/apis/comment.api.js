@@ -1,19 +1,19 @@
 const BaseApi = require('../BaseApi');
 
 class CommentApi extends BaseApi {
-  listComments = (lineId) => (
+  listComments = async (lineId) => (
     this.get(`/comment/${lineId}`)
   );
 
-  createComment = (lineId, data) => (
+  createComment = async (lineId, data) => (
     this.post(`/comment/${lineId}`, data)
   );
 
-  updateComment = (lineId, commentId, data) => (
+  updateComment = async (lineId, commentId, data) => (
     this.patch(`/comment/${lineId}/${commentId}`, data)
   );
 
-  deleteComment = (lineId, commentId) => (
+  deleteComment = async (lineId, commentId) => (
     this.delete(`/comment/${lineId}/${commentId}`)
   );
 }

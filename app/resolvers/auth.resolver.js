@@ -1,9 +1,9 @@
 module.exports = {
   Mutation: {
-    login: (parent, args, context) => (
+    login: async (parent, args, context) => (
       context.dataSources.authApi.login(args)
     ),
-    logout: (parent, args, context) => (
+    logout: async (parent, args, context) => (
       context.dataSources.authApi.logout()
     ),
   },

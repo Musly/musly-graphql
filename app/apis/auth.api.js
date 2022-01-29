@@ -1,11 +1,11 @@
 const BaseApi = require('../BaseApi');
 
 class AuthApi extends BaseApi {
-  login = (credentials) => (
+  login = async (credentials) => (
     this.post('/auth/login', credentials)
   );
 
-  logout = () => (
+  logout = async () => (
     this.get('/auth/logout')
   );
 }

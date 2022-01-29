@@ -1,11 +1,11 @@
 const BaseApi = require('../BaseApi');
 
 class GenreApi extends BaseApi {
-  listGenres = (groupId) => (
+  listGenres = async (groupId) => (
     this.get(`/genre/${groupId}`)
   );
 
-  createGenre = (groupId, data) => (
+  createGenre = async (groupId, data) => (
     this.post(`/genre/${groupId}`, data)
   );
 }

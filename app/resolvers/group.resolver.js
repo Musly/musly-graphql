@@ -1,18 +1,24 @@
 module.exports = {
   Query: {
-    groups: (parent, args, context) => (
+    groups: async (parent, args, context) => (
       context.dataSources.groupApi.listGroups()
     ),
   },
   Mutation: {
-    createGroup: (parent, args, context) => (
+    createGroup: async (parent, args, context) => (
       context.dataSources.groupApi.createGroup(args)
     ),
-    updateGroup: (parent, { id, ...group }, context) => (
+    updateGroup: async (parent, { id, ...group }, context) => (
       context.dataSources.groupApi.updateGroup(id, group)
     ),
-    deleteGroup: (parent, args, context) => (
+    deleteGroup: async (parent, args, context) => (
       context.dataSources.groupApi.deleteGroup(args.id)
     ),
+  },
+  User: {
+    groups: async (parent, args, context) => {
+      const response = await context.dataSources.groupApi.listGroups();
+      return response.results || [];
+    },
   },
 };
