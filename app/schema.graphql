@@ -9,7 +9,7 @@ type Query {
   songs(groupId: ID!): [Song]!
   sections(songId: ID!): [Section]!
   lines(sectionId: ID!): [Line]!
-  comments(lineId: ID!): [Comment]!
+  comments(lineId: ID!): Comments!
   events(groupId: ID!): [Event]!
 }
 
@@ -91,9 +91,9 @@ type Mutation {
   deleteLine(id: ID!): [Line]!
 
   # comment
-  createComment(lineId: ID!, comment: String!): [Comment]!
-  updateComment(id: ID!, comment: String!): [Comment]!
-  deleteComment(id: ID!): [Comment]
+  createComment(lineId: ID!, comment: String!): Comments!
+  updateComment(lineId: ID!, id: ID!, comment: String!): Comments!
+  deleteComment(lineId: ID!, id: ID!): Comments!
 
   # event
   createEvent(
@@ -218,6 +218,13 @@ type Line {
   content: String!
   type: String!
   comments: [Comment]
+}
+
+# Comment
+
+type Comments {
+  total: Int!
+  results: [Comment]!
 }
 
 type Comment {
