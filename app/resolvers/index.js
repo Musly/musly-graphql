@@ -7,6 +7,7 @@ const resolvers = buildResolvers([
   require('./artist.resolver'),
   require('./comment.resolver'),
   require('./genre.resolver'),
+  require('./song.resolver'),
 ]);
 
 console.log(resolvers);

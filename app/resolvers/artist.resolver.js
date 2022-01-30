@@ -22,7 +22,7 @@ module.exports = {
   },
   Group: {
     artists: async (parent, args, context) => {
-      const response = await context.dataSources.artistApi.fetchArtist(parent.id);
+      const response = await context.dataSources.artistApi.listArtists(parent.id);
       return response.results || [];
     },
   },

@@ -3,6 +3,10 @@ module.exports = {
     groups: async (parent, args, context) => (
       context.dataSources.groupApi.listGroups()
     ),
+    group: async (parent, args, context) => {
+      const response = await context.dataSources.groupApi.fetchGroup(args.groupId);
+      return response.group || null;
+    },
   },
   Mutation: {
     createGroup: async (parent, args, context) => (

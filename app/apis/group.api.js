@@ -9,6 +9,10 @@ class GroupApi extends BaseApi {
     this.post('/group', data)
   );
 
+  fetchGroup = async (groupId) => (
+    this.get(`/group/${groupId}`)
+  );
+
   updateGroup = async (groupId, data) => (
     this.patch(`/group/${groupId}`, data)
   );

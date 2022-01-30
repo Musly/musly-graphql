@@ -1,15 +1,28 @@
 type Query {
   me: User
+
   dashboard(groupId: ID!): Dashboard!
+
   groups: Groups!
+  group(groupId: ID!): Group
+
   artists(groupId: ID!): Artists!
+
   positions(groupId: ID!): [Position]!
+
   genres(groupId: ID!): Genres!
+
   keys(groupId: ID!): [Key]!
-  songs(groupId: ID!): [Song]!
+
+  songs(groupId: ID!): Songs!
+  song(groupId: ID!, songId: ID!): Song
+
   sections(songId: ID!): [Section]!
+
   lines(sectionId: ID!): [Line]!
+
   comments(lineId: ID!): Comments!
+
   events(groupId: ID!): [Event]!
 }
 
@@ -69,16 +82,17 @@ type Mutation {
     artistId: ID
     keyId: ID
     duration: Int
-  ): [Song]!
+  ): Songs!
   updateSong(
+    groupId: ID!
     id: ID!
     title: String
     genreId: ID
     artistId: ID
     keyId: ID
     duration: Int
-  ): [Song]!
-  deleteSong(id: ID!): [Song]!
+  ): Songs!
+  deleteSong(groupId: ID!, id: ID!): Songs!
 
   # section
   createSection(songId: ID!, title: String!): [Section]!
@@ -203,9 +217,15 @@ type Artist {
 
 # song
 
+type Songs {
+  total: Int!
+  results: [Song]!
+}
+
 type Song {
   id: ID!
   title: String!
+  slug: String!
   genre: Genre
   artist: Artist
   key: Key
